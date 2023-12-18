@@ -50,21 +50,58 @@ const controller = {
 
 	// Update - Form to edit
 	edit: (req, res) => {
+		let {id} = req.params
 		let products = leerArchivo('productsDataBase')
-		res.render('product-edit-form', {products})
+		let productEdit = products.find(productEdit => productEdit.id === +id);
+		
+		res.render('product-edit-form', {products, productEdit});
 	},
 	// Update - Method to update
 	update: (req, res) => {
 		const {id} = req.params;
+		const { name, price, discount, category, description} = req.body;
+
 		let archivo = leerArchivo('productsDataBase');
+		
+		let productIndex = -1;
 
-		let product
+		archivo.forEach((product, index) =>{
+			if(product.id === +id){
+				productIndex = index;
+			}
+		});
 
+		if(productIndex !== -1){
+			const guardarImage = archivo[productIndex].image
+
+		archivo[productIndex] = {
+            id: +id,
+            name: name.trim(),
+            price: +price,
+            discount: +discount,
+            category,
+            description: description.trim(),
+        };
+
+		if(guardarImage !== undefined){
+			archivo[productIndex].image = guardarImage;
+		}
+	}
+
+		cargarArchivo(archivo, 'productsDataBase');
+		res.redirect('/');
 	},
 
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-		// Do the magic
+		const {id} = req.params;
+		const archivoJson = leerArchivo('productsDataBase')
+
+		const productosNoEliminados = archivoJson.filter(product => product.id !== +id)
+
+		cargarArchivo(productosNoEliminados, 'productsDataBase')
+
+		res.redirect('/')
 	}
 };
 
