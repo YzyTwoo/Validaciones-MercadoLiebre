@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "firstName": "Juan Eduardo",
+    "lastName": "González",
+    "email": "usuario@e-mail.com",
+    "password": "12345"
+  },
+  {
+    "id": 1704684838229,
+    "email": "tizianojoelorieta04@gmail.com",
+    "password": "sadasdfas"
+  },
+  {
+    "id": 1704691350414,
+    "email": "tizianojoelorieta04@gmail.com",
+    "password": "holacomova"
+  },
+  {
+    "id": 1704691459674,
+    "firstName": "Julian Eduardo",
+    "lastName": "Aquino",
+    "email": "juli@gmail.com",
+    "password": "holacomova2"
+  }
+]
