@@ -1,15 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 
-const {leerArchivo, cargarArchivo, idUnico} = require('../data/dbLogica')
+const {leerArchivo, cargarArchivo, idUnico} = require('../data/dbLogica');
+const {validationResult} = require('express-validator');
 
 const userControllers = {
 create: (req, res) => {
     res.render('register-form')
 },
 
-// Create -  Method to store
 store: (req, res) => {
+    let errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+        res.render('register-form', {errors: errors.mapped(), old: req.body});
+    }
+
     const { firstName, lastName, email, password } = req.body;
 
     let archivo = leerArchivo('usersDataBase');
@@ -28,7 +34,7 @@ store: (req, res) => {
     cargarArchivo(newArchivo, 'usersDataBase');
 
     res.redirect('/');
-}
+},
 }
 
 module.exports = userControllers

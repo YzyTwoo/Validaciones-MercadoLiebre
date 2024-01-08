@@ -10,7 +10,7 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Formulario de Login</h2>
+				<h2 class="products-title">Formulario de Registro</h2>
 			</div>
 		</div>
 		<div class="col-12">
@@ -18,19 +18,34 @@
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="first-name" class="form-label">Nombre:</label>
-						<input type="text" id="firstName" name="firstName" placeholder="Ej: Juan Eduardo" class="form-input">
+						<input type="text" id="firstName" name="firstName" placeholder="Ej: Juan Eduardo" class="form-input"
+							value="<%= locals.old && old.firstName %>">
+						<% if (locals.errors && errors.firstName) { %>
+							<p class="errorsP"> <%= errors.firstName.msg %> </p>
+						<% } %>
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="last-name" class="form-label">Apellido:</label>
-						<input type="text" id="lastName" name="lastName" placeholder="Ej: González" class="form-input">
+						<input type="text" id="lastName" name="lastName" placeholder="Ej: González" class="form-input"
+						value="<%= locals.old && old.lastName %>">
+						<% if (locals.errors && errors.lastName) { %>
+							<p class="errorsP"> <%= errors.lastName.msg %> </p>
+						<% } %>
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="email" class="form-label">E-mail:</label>
-						<input type="email" id="email" name="email" placeholder="Ej: usuario@e-mail.com" class="form-input">
+						<input type="email" id="email" name="email" placeholder="Ej: usuario@e-mail.com" class="form-input"
+						value="<%= locals.old && old.email %>">
+						<% if (locals.errors && errors.email) { %>
+							<p class="errorsP"> <%= errors.email.msg %> </p>
+						<% } %>
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="password" class="form-label">Contraseña:</label>
 						<input type="password" id="password" name="password" autocomplete="off" placeholder="Recomendamos que sea una clave que no use habitualmente" class="form-input">
+						<% if (locals.errors && errors.password) { %>
+							<p class="errorsP"> <%= errors.password.msg %> </p>
+						<% } %>
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Crear cuenta</button>

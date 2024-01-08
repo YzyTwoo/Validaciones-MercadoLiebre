@@ -226,7 +226,10 @@ hr {
   align-items: center;
   transition: 300ms;
 }
-
+.errorsP{
+  color: red;
+  font-size: 14px;
+}
 .product-box:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
