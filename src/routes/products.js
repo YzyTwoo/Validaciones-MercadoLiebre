@@ -13,6 +13,10 @@ router.get('/create', productsController.create);
 router.post('/create', productsController.store); 
 
 
+router.get('/form', productsController.form); 
+router.post('/form', productsController.store); 
+
+
 //  GET ONE PRODUCT ***/ 
 router.get('/detail/:id', productsController.detail); 
 
