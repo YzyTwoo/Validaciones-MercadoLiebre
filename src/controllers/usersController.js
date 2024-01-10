@@ -12,10 +12,7 @@ create: (req, res) => {
 store: (req, res) => {
     let errors = validationResult(req);
 
-    if(!errors.isEmpty()){
-        res.render('register-form', {errors: errors.mapped(), old: req.body});
-    }
-
+    if(errors.isEmpty()){
     const { firstName, lastName, email, password } = req.body;
 
     let archivo = leerArchivo('usersDataBase');
@@ -34,6 +31,9 @@ store: (req, res) => {
     cargarArchivo(newArchivo, 'usersDataBase');
 
     res.redirect('/');
+    }else{
+        res.render('register-form', {errors: errors.mapped(), old: req.body});
+    }
 },
 }
 
